@@ -1,0 +1,6 @@
+.alert{
+    background-color: rgb(236, 236, 236);
+    color: #333;
+    padding: 0.8rem;
+    font-weight: bold;
+}
