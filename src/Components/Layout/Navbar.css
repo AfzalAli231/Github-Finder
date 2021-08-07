@@ -2,11 +2,40 @@
     background-color: #333;
     color: #eee;
     padding: 0.7rem 1rem;
+    padding-bottom: 0.4rem;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul{
+    display: flex;
+    list-style: none;
+    position: absolute;
+    top: 1.4rem;
+    right: 5rem;
+}
+
+.navbar ul li a{
+    color: #eee;
+    font-size: 1.2rem;
+    padding: 1.5rem 1.3rem;
+    margin-left: 1rem;
+    transition: all 0.2s ease-in;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover{
+    background-color: #1ed7fe;
 }
 
 .navbar i{
     font-size: 2rem;
 }
+
 .navbar h1{
     font-size: 1.5rem;
 }

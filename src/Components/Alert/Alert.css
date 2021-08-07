@@ -2,5 +2,13 @@
     background-color: rgb(236, 236, 236);
     color: #333;
     padding: 0.8rem;
+    margin-bottom: -2rem;
     font-weight: bold;
+}
+.cancel{
+    position: absolute;
+    top: 0.8rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    right: 1.5rem;
 }
