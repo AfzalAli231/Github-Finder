@@ -96,12 +96,14 @@ display: flex;
 }
 .followers{
     padding: 1rem 3rem;
+    padding-bottom: 2rem;
     background-color: cyan;
     color: white;
     position: absolute;
     bottom: 32%;
     border-radius: 8px;
     font-weight: bold;
+    top: 63%;
     left: 10%;
 }
 .followers:hover{
@@ -109,12 +111,14 @@ display: flex;
 }
 .following{
     padding: 1rem 3rem;
+    padding-bottom: 2rem;
     color: white;
     background-color: green;
     position: absolute;
     bottom: 32%;
     border-radius: 8px;
     font-weight: bold;
+    top: 63%;
     left: 25%;
 }
 .following:hover{
@@ -122,39 +126,44 @@ display: flex;
 }
 .public_repos{
     padding: 1rem 3rem;
+    padding-bottom: 2rem;
     color: black;
     background-color: lightgrey;
     position: absolute;
     bottom: 32%;
     border-radius: 8px;
     font-weight: bold;
-    right: 42%;
+    top: 63%;
+    right: 44%;
 }
 .public_repos:hover{
     border: 4px solid lightgrey;
 }
 .public_gists{
     padding: 1rem 3rem;
+    padding-bottom: 2rem;
     color: white;
     background-color: palegreen;
     position: absolute;
     bottom: 32%;
     border-radius: 8px;
     font-weight: bold;
-    right: 25%;
+    top: 63%;
+    right: 28%;
 }
 .public_gists:hover{
     border: 4px solid palegreen;
 }
 .location{
-    padding: 1rem 1.5rem;
+    padding: 1rem 0.2rem;
     color: black;
     background-color: red;
     position: absolute;
     bottom: 32%;
     border-radius: 8px;
     font-weight: bold;
-    right: 10%;
+    top: 63%;
+    right: 9%;
 }
 .location:hover{
     border: 4px solid red;
