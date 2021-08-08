@@ -20,7 +20,6 @@ const Navbar = (props) => {
                 <Link to="/about">About</Link>
               </li>
             </ul>
-
           </div>
         </div>
       </nav>

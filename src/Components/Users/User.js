@@ -20,12 +20,9 @@ export default class User extends Component {
       html_url,
       location,
       hireable,
-        followers,
-        following,
-    //   followers_url,
-    //   gists_url,
-    //   repos_url,
-    //   following_url,
+      followers,
+      following,
+      blog,
       public_gists,
       public_repos,
       name,
@@ -46,6 +43,7 @@ export default class User extends Component {
               <img className="img" src={avatar_url} alt="Profile" />
               <h4>Username: {name}</h4>
               <h4 className="Profile">Profile Name: {login}</h4>
+              <h4 className="website">Website: {blog}</h4>
               <h4 className="h4">
                 Hireable:{" "}
                 {hireable ? (
@@ -54,32 +52,36 @@ export default class User extends Component {
                   <i className="fas fa-times-circle"></i>
                 )}
               </h4>
-              <Link target="_blank" className="a" to={html_url}>
+              <a target="_blank" className="a" rel='noreferrer' href={html_url}>
                 Github Profile
-              </Link>
+              </a>
             </div>
           </div>
           <div className="card-2">
             <div className="col-2">
               <ul>
                 <li>
-                  <Link to='' className="followers">Follower: {followers}</Link>
+                  <Link to="" className="followers">
+                    Follower: {followers}
+                  </Link>
                 </li>
                 <li>
-                  <Link to='' className="following">Following: {following}</Link>
+                  <Link to="" className="following">
+                    Following: {following}
+                  </Link>
                 </li>
                 <li>
-                  <Link to='' className="public_repos">
+                  <Link to="" className="public_repos">
                     Public Repos: {public_repos}
                   </Link>
                 </li>
                 <li>
-                  <Link to='' className="public_gists">
+                  <Link to="" className="public_gists">
                     Public Gists: {public_gists}
                   </Link>
                 </li>
                 <li>
-                  <Link to='' className="location">
+                  <Link to="" className="location">
                     Location: {location ? location : "none"}
                   </Link>
                 </li>
