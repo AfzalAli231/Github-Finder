@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import logo from "./logo.png";
 import "./Loading.css";
 
-class Loading extends Component {
-  render() {
+function Loading() {
     return (
       <div className="App">
         <header className="App-header">
@@ -13,6 +12,5 @@ class Loading extends Component {
       </div>
     );
   }
-}
 
 export default Loading;

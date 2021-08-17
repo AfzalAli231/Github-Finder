@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Navbar from "./Components/Layout/Navbar";
 import Search from "./Components/Search/Search";
@@ -10,51 +10,59 @@ import About from "./Components/Page/About";
 import User from "./Components/Users/User";
 
 
-class App extends React.Component {
-  state = {
-    users: [],
-    user: {},
-    loading: true,
-    alert: null,
-  };
+function App() {
 
-  searchTextHandler = async (text) => {
-    this.setState({ loading: true });
+  const[users, setusers] = useState([]);
+  const[repos, setrepos] = useState([]);
+  const [user, setuser] = useState({});
+  const [loading, setloading] = useState(true);
+  const [alert, setalert] = useState(null);
+
+  const searchTextHandler = async (text) => {
+    setloading(true);
     const url = `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
     const res = await axios.get(url);
-    this.setState({ users: res.data.items, loading: false });
+    setusers(res.data.items);
+    setloading(false);
   };
 
-  getUser = async (username) => {
-    this.setState({ loading: true });
+  const getUser = async (username) => {
+    setloading(true);
     const url = `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
     const res = await axios.get(url);
-    this.setState({ user: res.data, loading: false });
+    setuser(res.data);
+    setloading(false);
   };
 
-  clearUsersHandler = () => {
-    this.setState({ users: [] });
+  const getUserRepos = async (username) => {
+    setloading(true);
+    const url = `https://api.github.com/users/${username}/repos?per_page=5&created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
+    const res = await axios.get(url);
+    setrepos(res.data);
+    setloading(false);
   };
 
-  alertHandler = (msg, style) => {
-    this.setState({ alert: { msg, style } });
+  const clearUsersHandler = () => {
+    setusers([]);
+  };
+
+  const alertHandler = (msg, style) => {
+    setalert({ msg, style });
     setTimeout(() => {
-      this.setState({ alert: null });
+      setalert(null);
     }, 4000);
   };
 
-  cancelHandler = () => {
-    this.setState({alert: null})
-  }
+  const cancelHandler = () => {
+    setalert(null);
+  };
 
-  render() {
-    const { users, loading, alert, user } = this.state;
     return (
       <Router>
         <div>
           <Navbar />
           <div className="container">
-            <Alert onAlert={alert} cancelHandler={this.cancelHandler} />
+            <Alert onAlert={alert} cancelHandler={cancelHandler} />
           </div>
           <Switch>
             <Route
@@ -63,10 +71,10 @@ class App extends React.Component {
               render={(props) => (
                 <div className="container">
                   <Search
-                    onSearchText={this.searchTextHandler}
-                    onClearUsers={this.clearUsersHandler}
+                    onSearchText={searchTextHandler}
+                    onClearUsers={clearUsersHandler}
                     showUser={users.length > 0 ? true : false}
-                    onAlert={this.alertHandler}
+                    onAlert={alertHandler}
                   />
                   <Users users={users} loading={loading} />
                 </div>
@@ -79,8 +87,10 @@ class App extends React.Component {
               render={(props) => (
                 <User
                   {...props}
-                  getUser={this.getUser}
+                  getUser={getUser}
+                  getUserRepos={getUserRepos}
                   user={user}
+                  repos={repos}
                   loading={loading}
                 />
               )}
@@ -90,5 +100,4 @@ class App extends React.Component {
       </Router>
     );
   }
-}
 export default App;

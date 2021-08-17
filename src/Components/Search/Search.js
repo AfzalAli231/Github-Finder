@@ -1,33 +1,31 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import './Search.css'
-class Search extends Component {
-  state = {
-    text: "",
+function Search(props) {
+
+  const [text, setText] = useState("")
+  const textHandler = (e) => {
+    setText(e.target.value);
   };
-  textHandler = (e) => {
-    this.setState({ text: e.target.value });
-  };
-  onSubmitHandler = (e) => {
+  const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (this.state.text === '') {
-      this.props.onAlert('Please Enter a User Name', 'light');
+    if (text === '') {
+      props.onAlert('Please Enter a User Name', 'light');
     } else {
-      this.props.onSearchText(this.state.text);
-      this.setState({text: ""})
+      props.onSearchText(text);
+      setText("");
     } 
   };
-  render() {
-    const { onClearUsers, showUser } = this.props;
+    const { onClearUsers, showUser } = props;
     return (
       <>
-        <form className="form" onSubmit={this.onSubmitHandler}>
+        <form className="form" onSubmit={onSubmitHandler}>
           <input
             type="text"
             name="text"
             placeholder="Search User"
-            value={this.state.text}
-            onChange={this.textHandler}
+            value={text}
+            onChange={textHandler}
           />
           <input type="submit" value="Search"></input>
         </form>
@@ -37,7 +35,6 @@ class Search extends Component {
       </>
     );
   }
-}
 Search.propTypes = {
   showUser: PropTypes.bool.isRequired,
   onClearUsers: PropTypes.func.isRequired,
